@@ -60,6 +60,45 @@
       transform: translateY(-8px);
       box-shadow: 0 25px 30px -12px rgba(0, 0, 0, 0.2);
     }
+    /* Mobile menu styles - dropdown that slides down from top */
+    .mobile-menu {
+      position: fixed;
+      top: -100%;
+      left: 0;
+      width: 100%;
+      background-color: #be185d;
+      transition: top 0.3s ease-in-out;
+      z-index: 45;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .mobile-menu.active {
+      top: 73px;
+    }
+    body.menu-open {
+      overflow: hidden;
+    }
+    .menu-icon {
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    /* Hamburger icon animation */
+    .menu-icon.active .bar1 {
+      transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    .menu-icon.active .bar2 {
+      opacity: 0;
+    }
+    .menu-icon.active .bar3 {
+      transform: rotate(45deg) translate(-5px, -6px);
+    }
+    .bar1, .bar2, .bar3 {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      margin: 5px 0;
+      transition: 0.3s;
+      border-radius: 2px;
+    }
   </style>
 </head>
 <body class="bg-gradient-to-br from-pink-50 via-white to-pink-50 text-gray-800">
@@ -74,20 +113,41 @@
     <span class="hidden md:inline-block font-semibold text-sm">WhatsApp Order</span>
   </a>
 
-  <!-- Navbar -->
+  <!-- Navbar with Mobile Dropdown Menu (3 lines hamburger) -->
   <nav class="bg-pink-700 text-white shadow-md sticky top-0 z-40">
     <div class="container mx-auto px-5 py-3 flex flex-wrap justify-between items-center">
       <div class="flex items-center gap-2">
         <i class="fas fa-birthday-cake text-2xl"></i>
         <span class="font-extrabold text-xl tracking-tight">Tee Baker Cakery</span>
       </div>
-      <div class="space-x-4 md:space-x-6 text-sm md:text-base font-medium">
+      
+      <!-- Desktop Menu (visible on medium screens and up) -->
+      <div class="hidden md:flex space-x-6 text-sm md:text-base font-medium">
         <a href="#about" class="hover:text-pink-200 transition">About</a>
         <a href="#services" class="hover:text-pink-200 transition">Services</a>
         <a href="#products" class="hover:text-pink-200 transition">Products</a>
         <a href="#gallery" class="hover:text-pink-200 transition">Gallery</a>
         <a href="#service-areas" class="hover:text-pink-200 transition">Areas</a>
         <a href="#contact" class="hover:text-pink-200 transition">Contact</a>
+      </div>
+      
+      <!-- Mobile Menu Button (3 lines hamburger icon) - visible only on mobile -->
+      <div id="menuIcon" class="menu-icon md:hidden">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </div>
+    </div>
+    
+    <!-- Mobile Dropdown Menu (slides down from top) -->
+    <div id="mobileMenu" class="mobile-menu md:hidden">
+      <div class="flex flex-col py-4 px-6 space-y-3">
+        <a href="#about" class="hover:text-pink-200 transition py-2 border-b border-pink-500 text-white font-medium">About</a>
+        <a href="#services" class="hover:text-pink-200 transition py-2 border-b border-pink-500 text-white font-medium">Services</a>
+        <a href="#products" class="hover:text-pink-200 transition py-2 border-b border-pink-500 text-white font-medium">Products</a>
+        <a href="#gallery" class="hover:text-pink-200 transition py-2 border-b border-pink-500 text-white font-medium">Gallery</a>
+        <a href="#service-areas" class="hover:text-pink-200 transition py-2 border-b border-pink-500 text-white font-medium">Areas</a>
+        <a href="#contact" class="hover:text-pink-200 transition py-2 border-b border-pink-500 text-white font-medium">Contact</a>
       </div>
     </div>
   </nav>
@@ -112,11 +172,11 @@
             <a href="https://wa.me/27786779970?text=Hi%20Tee%20Baker!%20I'd%20like%20to%20order.%20Please%20share%20your%20menu%20and%20prices." 
                target="_blank" 
                class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-full shadow-xl transition-all flex items-center gap-2 text-base md:text-lg">
-              <i class="fab fa-whatsapp text-xl md:text-2xl"></i>  Order on WhatsApp
+              <i class="fab fa-whatsapp text-xl md:text-2xl"></i> 💬 Order on WhatsApp
             </a>
             <a href="#products" 
                class="bg-white text-pink-700 border-2 border-pink-300 hover:bg-pink-50 font-semibold py-3 px-6 rounded-full shadow transition-all flex items-center gap-2 text-base md:text-lg">
-              <i class="fas fa-cake-candles"></i>  View Our Products
+              <i class="fas fa-cake-candles"></i> 🎂 View Our Products
             </a>
           </div>
           <div class="flex flex-wrap justify-center lg:justify-start gap-3 mt-6 text-xs md:text-sm text-gray-600">
@@ -391,7 +451,7 @@
         <a href="https://wa.me/27786779970?text=Hi%20Tee%20Baker!%20I%20want%20to%20order%20-%20cakes,%20cupcakes,%20snowballs%20or%20scones.%20Please%20send%20me%20the%20menu%20and%20prices%20for%205L,%2010L%20and%2020L%20sizes." 
            target="_blank" 
            class="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full text-base shadow-lg transition-all">
-          <i class="fab fa-whatsapp text-xl"></i>  Chat & Order on WhatsApp
+          <i class="fab fa-whatsapp text-xl"></i> 💬 Chat & Order on WhatsApp
         </a>
         <p class="text-xs text-gray-500 mt-4"><i class="fas fa-map-marker-alt text-pink-500"></i> Proudly serving Amanzimtoti, kwaMakhutha, Illovo, Embokodweni, Durban, Chatsworth, Umgababa, Athlone Park, Isipingo, Umlazi & surrounding areas.</p>
       </div>
@@ -402,7 +462,7 @@
   <footer class="bg-pink-800 text-white text-center py-5">
     <div class="container mx-auto px-4">
       <p class="font-medium text-sm">© 2026 Tee Baker Cakery — Baked With Love, Made for Every Celebration 🎂</p>
-       <p class="font-medium text-sm">Designed by Inkspire Digital Designs</p>
+      <p class="font-medium text-sm">Designed by Inkspire Digital Designs</p>
       <p class="text-pink-200 text-xs mt-1">📍 Amanzimtoti • Durban South • Surrounding Areas</p>
       <p class="text-pink-200 text-xs mt-1">Freshly baked cakes • Cupcakes 5L/10L/20L • Snowballs • Scones</p>
       <div class="mt-2 text-xs">
@@ -414,5 +474,34 @@
       </div>
     </div>
   </footer>
+
+  <!-- JavaScript for Mobile Hamburger Menu (3 lines that animate) -->
+  <script>
+    const menuIcon = document.getElementById('menuIcon');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const body = document.body;
+
+    function toggleMenu() {
+      mobileMenu.classList.toggle('active');
+      menuIcon.classList.toggle('active');
+      body.classList.toggle('menu-open');
+    }
+
+    function closeMenu() {
+      mobileMenu.classList.remove('active');
+      menuIcon.classList.remove('active');
+      body.classList.remove('menu-open');
+    }
+
+    if (menuIcon) {
+      menuIcon.addEventListener('click', toggleMenu);
+    }
+
+    // Close menu when clicking on a link inside mobile menu
+    const mobileLinks = mobileMenu ? mobileMenu.querySelectorAll('a') : [];
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+  </script>
 </body>
 </html>
